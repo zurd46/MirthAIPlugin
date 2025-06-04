@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+        // 1) Welches JS-Target und Modul‐Format?
+        "target": "ES2022",
+        "module": "commonjs",
+        "lib": [
+            "ES2022",
+            "DOM"
+        ],
+        // 2) Ausgabeordner für kompilierten Code
+        "outDir": "out",
+        // 3) Eingabeordner, in dem sich deine .ts-Dateien befinden
+        "rootDir": "src",
+        // 4) Typprüfung, Moduleinstellungen, etc.
+        "strict": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        // 5) Zusätzliche Typ‐Definitionen für Node und VS Code API
+        "types": [
+            "node",
+            "vscode"
+        ]
+    },
+    "include": [
+        "src/**/*.ts" // nimm alle .ts-Dateien unter src/ und seinen Unterordnern
+    ],
+    "exclude": [
+        "node_modules",
+        "out"
+    ]
+}

@@ -1,0 +1,46 @@
+# .gitignore für VS Code Extension
+
+### Betriebssystem-spezifische Dateien ###
+.DS_Store           # macOS
+Thumbs.db           # Windows
+desktop.ini         # Windows
+
+### Projektabhängigkeiten ###
+node_modules/       # Node.js-Module
+package-lock.json   # Wird durch yarn.lock ersetzt
+yarn-error.log      # Yarn-Fehlerlogs
+
+### Build- und Kompilierungsartefakte ###
+out/                # Kompilierte JS-Dateien
+dist/               # Distributionspakete
+*.vsix              # VS Code Extension-Pakete
+
+### Konfigurationsdateien ###
+.env                # Umgebungsvariablen
+.env.local          # Lokale Umgebungsvariablen
+.env.*.local        # Umgebungsspezifische Variablen
+
+### VS Code spezifisch ###
+.vscode/            # VS Code-Arbeitsbereichseinstellungen
+!.vscode/extensions.json # Aber diese Datei behalten
+!.vscode/tasks.json      # Wichtige Tasks behalten
+.vscode-test/       # Testverzeichnis
+
+### Debug- und Logdateien ###
+*.log               # Alle Logdateien
+logs/               # Logverzeichnis
+debug/              # Debug-Ausgaben
+
+### Testabdeckung ###
+coverage/           # Testabdeckungsberichte
+
+### Temporäre Dateien ###
+temp/               # Temporäre Dateien
+tmp/                # Weitere temporäre Dateien
+
+### TypeScript-Cache ###
+.tsbuildinfo        # TypeScript-Build-Info
+
+### Andere ###
+*.zip               # Archivdateien
+*.tar.gz            # Komprimierte Archive
