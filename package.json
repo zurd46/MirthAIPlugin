@@ -1,6 +1,6 @@
 {
     "name": "mirth-plugin-ai-gen",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "description": "Erstelle Mirth Connect Plugins automatisch mit KI (LangChain/LangGraph) direkt in VSCode.",
     "keywords": [
         "mirt",
