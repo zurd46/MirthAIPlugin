@@ -55,31 +55,31 @@ class PluginRequest(BaseModel):
 async def generate_plugin(req: PluginRequest):
     prompt_text = req.prompt
     steps = []
-    steps.append("1) Prompt empfangen")
+    steps.append("1) Receive prompt")
 
     # --- Log Prompt ---
-    log_panel("Prompt erhalten", prompt_text, style="yellow")
+    log_panel("Receive prompt", prompt_text, style="yellow")
 
     # 1) Metadaten extrahieren
     try:
         analyzer = PromptAnalyzerAgent()
         meta = analyzer.analyze(prompt_text)
-        log_panel("Extrahierte Metadaten", str(meta), style="green")
-        steps.append("2) Metadaten extrahiert")
+        log_panel("Extracted metadata", str(meta), style="green")
+        steps.append("2) Metadata extracted")
     except Exception as e:
-        log_panel("Fehler bei der Metadaten-Extraktion", str(e), style="red")
-        return JSONResponse({"error": f"Fehler beim Metadaten-Parsing: {e}"}, status_code=500)
+        log_panel("Error during metadata extraction", str(e), style="red")
+        return JSONResponse({"error": f"Metadata parsing error: {e}"}, status_code=500)
 
     # 2) Files generieren
     try:
         code_agent = CodeAgent()
         files = code_agent.generate_files(prompt_text, meta)
-        steps.append(f"3) {len(files)} Dateien generiert")
-        log_panel("Dateien generiert", f"{len(files)} Dateien erstellt.", style="blue")
+        steps.append(f"3) {len(files)} Files generated")
+        log_panel("Files generated", f"{len(files)} Files created.", style="blue")
         log_tree(files)
     except Exception as e:
-        log_panel("Fehler bei der Dateigenerierung", str(e), style="red")
-        return JSONResponse({"error": f"Fehler bei der Dateigenerierung: {e}"}, status_code=500)
+        log_panel("Error during file generation", str(e), style="red")
+        return JSONResponse({"error": f"Error during file generation: {e}"}, status_code=500)
 
     # 3) Dateien speichern
     for file in files:
@@ -97,12 +97,12 @@ async def generate_plugin(req: PluginRequest):
                 if directory and not os.path.exists(directory):
                     os.makedirs(directory, exist_ok=True)
                 save_file(path, file.get("content", ""))
-            log_panel("Datei gespeichert", f"{path} ({os.path.getsize(path)} bytes)", style="white")
+            log_panel("File saved", f"{path} ({os.path.getsize(path)} bytes)", style="white")
         except Exception as e:
-            log_panel("Fehler beim Schreiben", f"{path}\n{e}", style="bold red")
-            return JSONResponse({"error": f"Fehler beim Schreiben von {path}: {e}"}, status_code=500)
+            log_panel("Writing errors", f"{path}\n{e}", style="bold red")
+            return JSONResponse({"error": f"Errors when writing {path}: {e}"}, status_code=500)
 
-    steps.append("4) Dateien auf Festplatte gespeichert")
+    steps.append("4) Files stored on project")
     log_steps(steps)
 
     return JSONResponse({

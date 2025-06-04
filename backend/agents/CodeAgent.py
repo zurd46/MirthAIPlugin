@@ -48,8 +48,8 @@ class CodeAgent:
             resp = self.llm.invoke(system_message)
             raw = resp.content
         except Exception as exc:
-            print_panel("[CodeAgent] LLM-Request fehlgeschlagen", traceback.format_exc())
-            raise RuntimeError(f"[CodeAgent] LLM-Request fehlgeschlagen: {exc}")
+            print_panel("[CodeAgent] LLM-Request faild", traceback.format_exc())
+            raise RuntimeError(f"[CodeAgent] LLM-Request faild: {exc}")
 
         # --- Strip Markdown (falls nötig) ---
         text = self._strip_code_fences(str(raw))
