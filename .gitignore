@@ -26,6 +26,8 @@ dist/               # Distributionspakete
 !.vscode/tasks.json      # Wichtige Tasks behalten
 .vscode-test/       # Testverzeichnis
 
+node_modules/
+
 ### Debug- und Logdateien ###
 *.log               # Alle Logdateien
 logs/               # Logverzeichnis
