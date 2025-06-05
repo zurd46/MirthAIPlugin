@@ -183,7 +183,7 @@ class MirthChatPanel {
       background: transparent;
     }
     .ai {
-      color: #93deb1;
+      color:rgb(221, 221, 221);
       background: transparent;
     }
     .ai-status {

@@ -1,6 +1,6 @@
 # Mirth Plugin AI Generator
 
-**Version:** 0.1.5
+**Version:** 0.1.7
 
 **Publisher:** Daniel Zurmühle
 
@@ -15,6 +15,3 @@ Enter the command `mirthPluginGen.openChat`.
 ---
 
 This version provides a clear and concise description of what your extension does and how to get started with it. If you need further customization or additional details, feel free to let me know!
-
-
-![1749070364092](images/README/1749070364092.png)
