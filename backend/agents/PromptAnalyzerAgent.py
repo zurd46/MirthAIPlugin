@@ -3,6 +3,18 @@
 import json
 import re
 from langchain_openai import ChatOpenAI
+# --- Rich Logging ---
+from rich.console import Console
+from rich.panel import Panel
+from rich.tree import Tree
+from rich.table import Table
+from rich.traceback import install
+install(show_locals=True)
+console = Console()
+
+def log_panel(title, content, style="cyan"):
+    console.print(Panel(content, title=title, style=style))
+
 
 class PromptAnalyzerAgent:
     """

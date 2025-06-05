@@ -1,6 +1,6 @@
 # Mirth Plugin AI Generator
 
-**Version:** 0.1.7
+**Version:** 0.1.9
 
 **Publisher:** Daniel Zurmühle
 

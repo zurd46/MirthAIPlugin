@@ -1,13 +1,13 @@
-# backend/agent_server.py
-
 import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
+
 from backend.agents.PromptAnalyzerAgent import PromptAnalyzerAgent
 from backend.agents.CodeAgent import CodeAgent
 from backend.agents.TestingAgent import TestingAgent
+from backend.agents.DependencyAgent import DependencyAgent
 from backend.utils import save_file
 
 # --- Rich Logging ---
@@ -23,7 +23,7 @@ def log_panel(title, content, style="cyan"):
     console.print(Panel(content, title=title, style=style))
 
 def log_tree(files):
-    tree = Tree("📦 [bold]GENERATED_PLUGIN[/bold]")
+    tree = Tree("📦 GENERATED_PLUGIN")
     for file in files:
         rel = file.get("path", "")
         size = file.get("content_binary")
@@ -40,7 +40,7 @@ def log_steps(steps):
     table.add_column("Beschreibung")
     for i, step in enumerate(steps, 1):
         table.add_row(str(i), step)
-    console.print(table)
+    #console.print(table)
 
 app = FastAPI()
 
@@ -83,6 +83,30 @@ async def generate_plugin(req: PluginRequest):
     except Exception as e:
         log_panel("Error during file generation", str(e), style="red")
         return JSONResponse({"error": f"Error during file generation: {e}"}, status_code=500)
+
+    # === Dependency-Prüfung für Mirth-Server-API ===
+    dep_agent = DependencyAgent()
+    mirth_api_needed = any(
+        "server-api" in f.get("content", "") for f in files if f["path"].endswith("pom.xml")
+    )
+    dep_result_msg = None
+    if mirth_api_needed:
+        ok, dep_result_msg = dep_agent.check_and_install_mirth_server_api()
+        log_panel("DependencyAgent", dep_result_msg, style="red" if not ok else "green")
+        if not ok:
+            # Abbrechen mit klarer Fehlermeldung und Anleitung
+            return JSONResponse({
+                "error": dep_result_msg,
+                "steps": steps,
+                "files": [
+                    {
+                        "path": f["path"],
+                        "size_bytes": len(f["content_binary"]) if f.get("content_binary") is not None
+                                  else len(f.get("content", "").encode("utf-8"))
+                    }
+                    for f in files
+                ]
+            }, status_code=500)
 
     # 3) Dateien speichern
     for file in files:

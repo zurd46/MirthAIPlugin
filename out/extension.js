@@ -129,6 +129,7 @@ class MirthChatPanel {
       background: #181c24;
       color: #e3e6eb;
     }
+
     #mainFlex {
       display: flex;
       flex-direction: column;
@@ -136,6 +137,7 @@ class MirthChatPanel {
       min-height: 100vh;
       width: 100vw;
     }
+
     #headerBar {
       display: flex;
       align-items: center;
@@ -149,6 +151,7 @@ class MirthChatPanel {
       border-bottom: 1px solid #242d3d;
       min-height: 36px;
     }
+
     #headerBar img {
       width: 30px;
       height: 30px;
@@ -158,11 +161,13 @@ class MirthChatPanel {
       display: inline-block;
       vertical-align: middle;
     }
+
     #headerTitle {
       color: #e3e6eb;
       font-size: 1.12em;
       letter-spacing: 0.3px;
     }
+
     #chat {
       display: flex;
       flex-direction: column;
@@ -173,46 +178,85 @@ class MirthChatPanel {
       border-radius: 0 0 0 0;
       padding: 18px 16px 0 16px;
       overflow-y: auto;
-      font-size: 12px;
+      font-size: 13px;
       box-shadow: 0 4px 18px #15192030;
       box-sizing: border-box;
     }
+
     #chatHistory {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
       overflow-y: auto;
+      padding-bottom: 12px;
     }
+
     #statusBar {
       min-height: 28px;
       padding: 4px 0;
     }
+
     .chatline {
-      margin-bottom: 16px;
+      margin-bottom: 0;
       word-break: break-word;
-    }
-    .user {
-      color:rgb(196, 218, 240);
+      padding: 0;
       background: transparent;
+      border: none;
+      box-shadow: none;
     }
-    .ai {
-      color:rgb(71, 231, 143);
-      font-size: 10px;
-      font-style: normal;
-      background: transparent;
-    }
-    .ai-status {
-      color:rgb(71, 231, 143);
-      font-style: normal;
-      font-size: 10px;
-      background: transparent;
-    }
-    .error {
-      color: #df4444;
+
+    .chatline.user {
+      align-self: flex-end;
+      background: rgb(26, 28, 36);
+      color: #f4f6fa;
+      border-radius: 15px 15px 4px 15px;
+      padding: 25px;
+      margin-bottom: 2px;
+      max-width: 80%;
+      font-size: 1.2em;
       font-weight: 500;
-      font-size: 10px;
-      background: transparent;
+      box-shadow: 0 2px 7px #0002;
     }
-    ul.filelist { margin: 10px 0 0 14px; padding-left: 14px; }
-    ul.filelist li { font-size: 10px; margin-bottom: 4px; color: rgb(71, 231, 143); }
+
+    .chatline.ai, .chatline.ai-status {
+      align-self: flex-start;
+      background:rgb(26, 28, 36);
+      color: #ececec;
+      border-radius: 15px 15px 15px 4px;
+      padding: 25px;
+      margin-bottom: 2px;
+      max-width: 80%;
+      font-size: 1.2em;
+      box-shadow: 0 2px 7px #0002;
+    }
+
+    .chatline.error {
+      align-self: flex-start;
+      background: #29222a;
+      color: #ff8484;
+      border-radius: 15px 15px 15px 4px;
+      padding: 8px 14px;
+      margin-bottom: 2px;
+      max-width: 80%;
+      font-size: 1em;
+      font-weight: 500;
+      box-shadow: 0 2px 7px #0002;
+    }
+
+    ul.filelist {
+      margin: 10px 0 0 14px;
+      padding-left: 16px;
+    }
+
+    ul.filelist li {
+      font-size: 12px;
+      margin-bottom: 4px;
+      color: #82b7ff;
+      background: none;
+      font-family: monospace;
+    }
+
     #promptRow {
       flex: 1;
       display: flex;
@@ -221,6 +265,7 @@ class MirthChatPanel {
       background: #181c24;
       box-sizing: border-box;
     }
+
     #prompt {
       flex: 1;
       background: #212431;
@@ -233,7 +278,11 @@ class MirthChatPanel {
       transition: border 0.15s;
       box-sizing: border-box;
     }
-    #prompt:focus { border: 1.5px solid #a7c7e7; }
+
+    #prompt:focus {
+      border: 1.5px solid #7ecfff;
+    }
+
     #send {
       background: #c4d3ee;
       color: #212431;
@@ -247,7 +296,26 @@ class MirthChatPanel {
       white-space: nowrap;
       box-sizing: border-box;
     }
-    #send:hover { background: #9cc6e9; color: #1d263a; }
+
+    #send:hover {
+      background: #9cc6e9;
+      color: #1d263a;
+    }
+
+    b.user,
+    b.ai,
+    b.ai-status {
+      font-weight: 600;
+      color: #7ecfff;
+    }
+
+    b.ai, b.ai-status {
+      color: #97efb7;
+    }
+
+    b.error {
+      color: #ff8484;
+    }
   </style>
 </head>
 <body>
