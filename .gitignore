@@ -21,8 +21,6 @@ dist/
 # Generated plugin output
 ###########################################
 GENERATED_PLUGIN/
-backend/__pycache__
-backend/agents/__pycache__
 
 ###########################################
 # VS Code-specific files
