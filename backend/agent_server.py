@@ -7,6 +7,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from backend.agents.PromptAnalyzerAgent import PromptAnalyzerAgent
 from backend.agents.CodeAgent import CodeAgent
+from backend.agents.TestingAgent import TestingAgent
 from backend.utils import save_file
 
 # --- Rich Logging ---
@@ -107,9 +108,22 @@ async def generate_plugin(req: PluginRequest):
     steps.append("4) Files stored on project")
     log_steps(steps)
 
+    # === Testing Schritt ===
+    try:
+        plugin_dir = os.path.join(os.getcwd(), "GENERATED_PLUGIN")
+        tester = TestingAgent()
+        test_result = tester.run_tests(plugin_dir)
+        steps.append("5) Tests ausgeführt")
+        log_panel("Testing results", str(test_result), style="magenta")
+    except Exception as e:
+        log_panel("Error during testing", str(e), style="red")
+        test_result = {"success": False, "error": str(e)}
+        steps.append("5) Fehler beim Testen")
+
     return JSONResponse({
         "msg": "Plugin files generated and saved successfully.",
         "steps": steps,
+        "test_result": test_result,
         "files": [
             {
                 "path": f["path"],

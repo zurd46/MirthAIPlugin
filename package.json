@@ -1,7 +1,7 @@
 {
     "name": "mirth-plugin-ai-gen",
-    "version": "0.1.7",
-    "description": "Erstelle Mirth Connect Plugins automatisch mit KI (LangChain/LangGraph) direkt in VSCode.",
+    "version": "0.1.8",
+    "description": "Create Mirth Connect plugins automatically with AI (LangChain/LangGraph) directly in VSCode.",
     "keywords": [
         "mirt",
         "connect"
@@ -33,7 +33,8 @@
     "icon": "images/icon.png",
     "categories": [
         "Other",
-        "AI"
+        "AI",
+        "Mirth Connect"
     ],
     "activationEvents": [
         "onCommand:mirthPluginGen.openChat"
@@ -42,8 +43,8 @@
         "commands": [
             {
                 "command": "mirthPluginGen.openChat",
-                "title": "Mirth Plugin: AI Chat öffnen",
-                "category": "Mirth Plugin"
+                "title": "Mirth Plugin: Open AI Chat",
+                "category": "Mirth Connect Plugin"
             }
         ]
     }

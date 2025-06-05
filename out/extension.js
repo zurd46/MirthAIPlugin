@@ -173,7 +173,7 @@ class MirthChatPanel {
       border-radius: 0 0 0 0;
       padding: 18px 16px 0 16px;
       overflow-y: auto;
-      font-size: 1.12em;
+      font-size: 12px;
       box-shadow: 0 4px 18px #15192030;
       box-sizing: border-box;
     }
@@ -190,25 +190,29 @@ class MirthChatPanel {
       word-break: break-word;
     }
     .user {
-      color: #a7c7e7;
+      color:rgb(196, 218, 240);
       background: transparent;
     }
     .ai {
-      color:rgb(221, 221, 221);
+      color:rgb(71, 231, 143);
+      font-size: 10px;
+      font-style: normal;
       background: transparent;
     }
     .ai-status {
-      color: #c5c9d3;
-      font-style: italic;
+      color:rgb(71, 231, 143);
+      font-style: normal;
+      font-size: 10px;
       background: transparent;
     }
     .error {
       color: #df4444;
       font-weight: 500;
+      font-size: 10px;
       background: transparent;
     }
     ul.filelist { margin: 10px 0 0 14px; padding-left: 14px; }
-    ul.filelist li { font-size: 1.02em; margin-bottom: 4px; color: #b0bcce; }
+    ul.filelist li { font-size: 10px; margin-bottom: 4px; color: rgb(71, 231, 143); }
     #promptRow {
       flex: 1;
       display: flex;
